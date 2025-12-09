@@ -98,17 +98,32 @@ const StudentDashboard: React.FC = () => {
   return (
     <div className="dashboard-container">
       <nav className="dashboard-nav">
-        <h2>NCK College</h2>
+        <div className="nav-brand">
+          <i className="bi bi-mortarboard-fill"></i>
+          <h2>The New College Kolhapur</h2>
+        </div>
         <div className="nav-actions">
-          <span className="user-info">👤 {application.student_name}</span>
-          <button onClick={handleLogout} className="btn-secondary">Logout</button>
+          <span className="user-info">
+            <i className="bi bi-person-circle"></i>
+            {application.student_name}
+          </span>
+          <button onClick={handleLogout} className="btn-secondary">
+            <i className="bi bi-box-arrow-right"></i>
+            Logout
+          </button>
         </div>
       </nav>
 
       <div className="dashboard-content">
         <div className="welcome-section">
-          <h1>Welcome, {application.student_name}!</h1>
-          <p>Application ID: <strong>{application.application_id}</strong></p>
+          <h1>
+            <i className="bi bi-emoji-smile"></i>
+            Welcome, {application.student_name}!
+          </h1>
+          <p>
+            <i className="bi bi-card-heading"></i>
+            Application ID: <strong>{application.application_id}</strong>
+          </p>
         </div>
 
         <div className="dashboard-grid">
@@ -126,13 +141,19 @@ const StudentDashboard: React.FC = () => {
           </div>
 
           <div className="info-card">
-            <h3>📧 Contact Information</h3>
+            <h3>
+              <i className="bi bi-envelope-fill"></i>
+              Contact Information
+            </h3>
             <p><strong>Email:</strong> {application.email}</p>
             <p><strong>Phone:</strong> {application.contact_number}</p>
           </div>
 
           <div className="info-card">
-            <h3>📊 Academic Details</h3>
+            <h3>
+              <i className="bi bi-graph-up-arrow"></i>
+              Academic Details
+            </h3>
             <p><strong>10th Marks:</strong> {application.marks_10}%</p>
             <p><strong>12th Marks:</strong> {application.marks_12}%</p>
             <p><strong>Average:</strong> {((application.marks_10 + application.marks_12) / 2).toFixed(2)}%</p>
@@ -141,13 +162,19 @@ const StudentDashboard: React.FC = () => {
 
         {application.admin_notes && (
           <div className="notes-section">
-            <h3>📝 Message from Administration</h3>
+            <h3>
+              <i className="bi bi-chat-left-text-fill"></i>
+              Message from Administration
+            </h3>
             <p>{application.admin_notes}</p>
           </div>
         )}
 
         <div className="activity-section">
-          <h3>📋 Application Timeline</h3>
+          <h3>
+            <i className="bi bi-clock-history"></i>
+            Application Timeline
+          </h3>
           {activityLogs.length > 0 ? (
             <div className="timeline">
               {activityLogs.map((log, index) => (
@@ -175,15 +202,27 @@ const StudentDashboard: React.FC = () => {
         .dashboard-nav {
           background: white;
           padding: 20px 40px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
           display: flex;
           justify-content: space-between;
           align-items: center;
         }
 
-        .dashboard-nav h2 {
+        .nav-brand {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .nav-brand i {
+          font-size: 2rem;
           color: #667eea;
+        }
+
+        .dashboard-nav h2 {
+          color: #2d3748;
           margin: 0;
+          font-weight: 700;
         }
 
         .nav-actions {
@@ -195,6 +234,14 @@ const StudentDashboard: React.FC = () => {
         .user-info {
           color: #64748b;
           font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .user-info i {
+          font-size: 1.5rem;
+          color: #667eea;
         }
 
         .dashboard-content {
@@ -210,11 +257,26 @@ const StudentDashboard: React.FC = () => {
         .welcome-section h1 {
           color: #2d3748;
           margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .welcome-section h1 i {
+          color: #667eea;
+          font-size: 2.5rem;
         }
 
         .welcome-section p {
           color: #64748b;
           font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .welcome-section p i {
+          color: #667eea;
         }
 
         .dashboard-grid {
@@ -274,6 +336,14 @@ const StudentDashboard: React.FC = () => {
         .info-card h3 {
           margin: 0 0 20px 0;
           color: #2d3748;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .info-card h3 i {
+          color: #667eea;
+          font-size: 1.5rem;
         }
 
         .info-card p {
@@ -292,6 +362,13 @@ const StudentDashboard: React.FC = () => {
         .notes-section h3 {
           margin: 0 0 15px 0;
           color: #92400e;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .notes-section h3 i {
+          font-size: 1.5rem;
         }
 
         .notes-section p {
@@ -309,6 +386,14 @@ const StudentDashboard: React.FC = () => {
         .activity-section h3 {
           margin: 0 0 25px 0;
           color: #2d3748;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .activity-section h3 i {
+          color: #667eea;
+          font-size: 1.5rem;
         }
 
         .timeline {

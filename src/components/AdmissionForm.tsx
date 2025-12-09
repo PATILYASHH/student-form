@@ -299,14 +299,18 @@ const AdmissionForm: React.FC = () => {
   return (
     <div className="admission-form-container">
       <div className="form-header">
-        <h1>Student Admission Form</h1>
-        <p>Please fill in all required information carefully</p>
+        <div className="header-logo">
+          <i className="bi bi-mortarboard-fill"></i>
+        </div>
+        <h1>The New College Kolhapur</h1>
+        <h2>Student Admission Form 2024-25</h2>
+        <p><i className="bi bi-info-circle-fill"></i> Please fill in all required information carefully</p>
       </div>
 
       <form onSubmit={handleSubmit} className="admission-form">
         {/* Section 1: Student Information */}
         <section className="form-section">
-          <h2>1. Student Information</h2>
+          <h2><i className="bi bi-person-fill"></i> 1. Student Information</h2>
           
           <div className="form-group">
             <label htmlFor="student_name">
@@ -515,7 +519,7 @@ const AdmissionForm: React.FC = () => {
 
         {/* Section 2: Parents Information */}
         <section className="form-section">
-          <h2>2. Parents Information</h2>
+          <h2><i className="bi bi-people-fill"></i> 2. Parents Information</h2>
           
           <div className="form-group">
             <label htmlFor="father_name">
@@ -591,7 +595,7 @@ const AdmissionForm: React.FC = () => {
 
         {/* Section 3: Personal Information */}
         <section className="form-section">
-          <h2>3. Personal Information</h2>
+          <h2><i className="bi bi-house-fill"></i> 3. Personal Information</h2>
           
           <div className="form-group">
             <label htmlFor="address">
@@ -636,7 +640,7 @@ const AdmissionForm: React.FC = () => {
 
         {/* Section 4: Bank Information */}
         <section className="form-section">
-          <h2>4. Bank Information</h2>
+          <h2><i className="bi bi-bank"></i> 4. Bank Information</h2>
           
           <div className="form-group">
             <label htmlFor="bank_account_number">
@@ -691,7 +695,7 @@ const AdmissionForm: React.FC = () => {
 
         {/* Section 5: Agreements */}
         <section className="form-section">
-          <h2>5. Declaration and Agreement</h2>
+          <h2><i className="bi bi-file-text-fill"></i> 5. Declaration and Agreement</h2>
           
           <div className="checkbox-group">
             <label className="checkbox-label">
@@ -777,6 +781,7 @@ const AdmissionForm: React.FC = () => {
                 className="btn-primary"
                 onClick={() => window.location.href = '/login'}
               >
+                <i className="bi bi-box-arrow-in-right"></i>
                 Go to Login
               </button>
             </div>
@@ -790,7 +795,17 @@ const AdmissionForm: React.FC = () => {
             className="btn-primary"
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Submitting...' : 'Submit Application'}
+            {isSubmitting ? (
+              <>
+                <i className="bi bi-arrow-clockwise spin-icon"></i>
+                Submitting Application...
+              </>
+            ) : (
+              <>
+                <i className="bi bi-check-circle-fill"></i>
+                Submit Application
+              </>
+            )}
           </button>
         </div>
       </form>
