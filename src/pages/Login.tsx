@@ -373,19 +373,6 @@ const Login: React.FC = () => {
           font-size: 1.1rem;
         }
 
-        .spin-icon {
-          animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         .login-footer {
           margin-top: 30px;
           text-align: center;
