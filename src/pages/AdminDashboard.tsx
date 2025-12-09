@@ -154,10 +154,20 @@ const AdminDashboard: React.FC = () => {
   return (
     <div className="admin-dashboard">
       <nav className="dashboard-nav">
-        <h2>Admin Dashboard</h2>
+        <div className="nav-brand">
+          <i className="bi bi-shield-lock-fill"></i>
+          <div>
+            <h2>Admin Dashboard</h2>
+            <p className="college-name">The New College Kolhapur</p>
+          </div>
+        </div>
         <div className="nav-actions">
-          <span className="user-info">👤 {user?.email}</span>
+          <span className="user-info">
+            <i className="bi bi-person-badge"></i>
+            {user?.email}
+          </span>
           <button onClick={() => { logout(); navigate('/login'); }} className="btn-secondary">
+            <i className="bi bi-box-arrow-right"></i>
             Logout
           </button>
         </div>
@@ -167,20 +177,40 @@ const AdminDashboard: React.FC = () => {
         {/* Statistics Cards */}
         <div className="stats-grid">
           <div className="stat-card" style={{ borderLeftColor: '#667eea' }}>
-            <h3>Total Applications</h3>
-            <p className="stat-number">{stats.total}</p>
+            <div className="stat-icon" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+              <i className="bi bi-files"></i>
+            </div>
+            <div className="stat-info">
+              <h3>Total Applications</h3>
+              <p className="stat-number">{stats.total}</p>
+            </div>
           </div>
           <div className="stat-card" style={{ borderLeftColor: '#64748b' }}>
-            <h3>Pending</h3>
-            <p className="stat-number">{stats.pending}</p>
+            <div className="stat-icon" style={{ background: '#64748b' }}>
+              <i className="bi bi-hourglass-split"></i>
+            </div>
+            <div className="stat-info">
+              <h3>Pending</h3>
+              <p className="stat-number">{stats.pending}</p>
+            </div>
           </div>
           <div className="stat-card" style={{ borderLeftColor: '#10b981' }}>
-            <h3>Approved</h3>
-            <p className="stat-number">{stats.approved}</p>
+            <div className="stat-icon" style={{ background: '#10b981' }}>
+              <i className="bi bi-check-circle-fill"></i>
+            </div>
+            <div className="stat-info">
+              <h3>Approved</h3>
+              <p className="stat-number">{stats.approved}</p>
+            </div>
           </div>
           <div className="stat-card" style={{ borderLeftColor: '#ef4444' }}>
-            <h3>Rejected</h3>
-            <p className="stat-number">{stats.rejected}</p>
+            <div className="stat-icon" style={{ background: '#ef4444' }}>
+              <i className="bi bi-x-circle-fill"></i>
+            </div>
+            <div className="stat-info">
+              <h3>Rejected</h3>
+              <p className="stat-number">{stats.rejected}</p>
+            </div>
           </div>
         </div>
 
@@ -229,7 +259,10 @@ const AdminDashboard: React.FC = () => {
 
         {/* Applications Table */}
         <div className="applications-section">
-          <h3>Applications ({filteredApps.length})</h3>
+          <h3>
+            <i className="bi bi-table"></i>
+            Applications ({filteredApps.length})
+          </h3>
           <div className="table-container">
             <table className="applications-table">
               <thead>
@@ -265,6 +298,7 @@ const AdminDashboard: React.FC = () => {
                         className="btn-action"
                         onClick={() => openModal(app)}
                       >
+                        <i className="bi bi-gear-fill"></i>
                         Manage
                       </button>
                     </td>
@@ -318,24 +352,28 @@ const AdminDashboard: React.FC = () => {
                   className="btn-status btn-pending"
                   onClick={() => updateStatus(selectedApp.id, 'pending')}
                 >
+                  <i className="bi bi-hourglass-split"></i>
                   Mark Pending
                 </button>
                 <button
                   className="btn-status btn-review"
                   onClick={() => updateStatus(selectedApp.id, 'under_review')}
                 >
+                  <i className="bi bi-eye-fill"></i>
                   Under Review
                 </button>
                 <button
                   className="btn-status btn-approve"
                   onClick={() => updateStatus(selectedApp.id, 'approved')}
                 >
+                  <i className="bi bi-check-circle-fill"></i>
                   Approve
                 </button>
                 <button
                   className="btn-status btn-reject"
                   onClick={() => updateStatus(selectedApp.id, 'rejected')}
                 >
+                  <i className="bi bi-x-circle-fill"></i>
                   Reject
                 </button>
               </div>
@@ -366,16 +404,42 @@ const AdminDashboard: React.FC = () => {
         .stat-card {
           background: white;
           border-radius: 12px;
-          padding: 30px;
+          padding: 25px;
           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
           border-left: 4px solid;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+          width: 60px;
+          height: 60px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          color: white;
+          flex-shrink: 0;
+        }
+
+        .stat-info {
+          flex: 1;
         }
 
         .stat-card h3 {
-          margin: 0 0 15px 0;
+          margin: 0 0 8px 0;
           color: #64748b;
           font-size: 0.9rem;
           text-transform: uppercase;
+          font-weight: 600;
         }
 
         .stat-number {
@@ -383,6 +447,40 @@ const AdminDashboard: React.FC = () => {
           font-weight: 700;
           color: #2d3748;
           margin: 0;
+        }
+
+        .nav-brand {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .nav-brand i {
+          font-size: 2.5rem;
+          color: #667eea;
+        }
+
+        .nav-brand h2 {
+          margin: 0;
+          font-size: 1.5rem;
+        }
+
+        .college-name {
+          font-size: 0.85rem;
+          color: #64748b;
+          margin: 0;
+          font-weight: 500;
+        }
+
+        .user-info {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .user-info i {
+          font-size: 1.5rem;
+          color: #667eea;
         }
 
         .filters-section {
@@ -423,6 +521,14 @@ const AdminDashboard: React.FC = () => {
         .applications-section h3 {
           margin: 0 0 20px 0;
           color: #2d3748;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .applications-section h3 i {
+          color: #667eea;
+          font-size: 1.5rem;
         }
 
         .table-container {
@@ -477,10 +583,16 @@ const AdminDashboard: React.FC = () => {
           cursor: pointer;
           font-weight: 600;
           font-size: 0.9rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.3s ease;
         }
 
         .btn-action:hover {
           background: #5568d3;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
         }
 
         .no-results {
@@ -565,11 +677,16 @@ const AdminDashboard: React.FC = () => {
         .btn-status {
           padding: 12px;
           border: none;
-          border-radius: 6px;
+          border-radius: 8px;
           cursor: pointer;
           font-weight: 600;
           font-size: 0.95rem;
           color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: all 0.3s ease;
         }
 
         .btn-pending { background: #64748b; }
@@ -579,6 +696,8 @@ const AdminDashboard: React.FC = () => {
 
         .btn-status:hover {
           opacity: 0.9;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         @media (max-width: 768px) {
